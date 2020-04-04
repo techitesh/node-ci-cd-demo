@@ -4,9 +4,11 @@ const mongoose = require('mongoose')
 const port = process.env.PORT || 3000
 const User = require('./models/user')
 const app = express()
+const { getSecret } = require('./helpers/helper')
 
-console.log(process.env.MONGO_URL)
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+const mongo_url = (process.env.NODE_ENV == 'development') ? process.env.MONGO_URL : getSecret('MONGO_URL_FILE')
+console.log(mongo_url)
+mongoose.connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(console.log(`Connected to Database`))
 .catch(error => console.log("Error",error.message))
 
