@@ -1,6 +1,10 @@
 const fs = require('fs')
-const util = require('util')
+const path = require('path')
 
-export const getSecret = (secret) => {
-    return fs.readFileSync(util.format(secret),'utf-8').trim()
+const getSecret = (secret) => {
+    return fs.readFileSync(secret,'utf-8').trim()
+}
+
+module.exports = {
+    getSecret
 }
