@@ -2,29 +2,24 @@ version: '3.6'
 services:
     api:
         container_name: api_container
-        build: .
         image: teamoceancode/express-mongo-app
-        env_file: .env
         environment:
             - PORT=${PORT}
             - NODE_ENV=development
             - MONGO_URL=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@db/demo-app?authSource=admin
         ports:
             - ${PORT}:3000
-        volumes:
-            - .:/usr/app
         command: npm run start
         networks:
             - app_network
 
     db:
         image: mongo
-        env_file: .env
         environment:
-            - MONGO_INITDB_ROOT_USERNAME=admin
-            - MONGO_INITDB_ROOT_PASSWORD=admin123
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
         ports:
-            - 27010:27017
+            - 27017:27017
         volumes:
             - mongodata:/data/db/
         networks:

@@ -1,15 +1,15 @@
 FROM node:latest
 
-WORKDIR /usr/app
+RUN npm install -g nodemon
+
+WORKDIR app
 
 COPY package.json .
-COPY . .
-
 RUN npm install
 
-RUN npm install -g nodemon
+COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "backend", "server.js"]
+CMD ["npm", "start"]
 

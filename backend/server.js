@@ -14,8 +14,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get('/',async (req, res, next) => {
-    return res.status(200).json({ success: true, data: "Hello world" });
+    const user = await User.find({  })
+    return res.status(200).json({ success: true, data: user });
 })
+
+app.get('/generate-user', (req, res) => {
+    const user = new User({ email: "admin@gmail.com" })
+    await user.save()
+    return res.status(200).json({ success: true, data: user });
+});
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
