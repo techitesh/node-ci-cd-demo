@@ -11,5 +11,5 @@ RUN npm install -g nodemon
 
 EXPOSE 3000
 
-CMD ["node", "src", "server.js"]
+CMD ["node", "backend", "server.js"]
 
