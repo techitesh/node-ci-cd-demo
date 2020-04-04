@@ -18,7 +18,7 @@ app.get('/',async (req, res, next) => {
     return res.status(200).json({ success: true, data: user });
 })
 
-app.get('/generate-user', (req, res) => {
+app.get('/generate-user',async (req, res) => {
     const user = new User({ email: "admin@gmail.com" })
     await user.save()
     return res.status(200).json({ success: true, data: user });
