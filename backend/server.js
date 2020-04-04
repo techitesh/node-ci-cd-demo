@@ -7,7 +7,8 @@ const app = express()
 const { getSecret } = require('./helpers/helper')
 
 const mongo_url = (process.env.NODE_ENV == 'development') ? process.env.MONGO_URL : getSecret('MONGO_URL_FILE')
-
+console.log("ENVIRONMENT========>",process.env.NODE_ENV)
+console.log("MONGO_URL ===========>", mongo_url)
 mongoose.connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(console.log(`Connected to Database`))
 .catch(error => console.log("Error",error.message))
