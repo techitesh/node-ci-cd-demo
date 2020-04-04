@@ -14,8 +14,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get('/',async (req, res, next) => {
-    const user =  await User.find({  })
-    return res.status(200).json({ success: true, message: user });
+    return res.status(200).json({ success: true, data: "Hello world" });
 })
 
 app.listen(port, () => {
